@@ -23,7 +23,7 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    ssh-keys = "amitkumardube:${file("id_rsa.pub")}"
+    ssh-keys = "amitkumardube:${file("./../.ssh/id_rsa.pub")}"
   }
 
   provisioner "remote-exec" {
@@ -33,7 +33,7 @@ resource "google_compute_instance" "default" {
         type        = "ssh"
         user        = "amitkumardube"
         host        = self.network_interface[0].access_config[0].nat_ip
-        private_key = file("id_rsa")
+        private_key = file("./../.ssh/id_rsa")
     }
 }
 
